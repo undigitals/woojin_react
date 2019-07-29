@@ -47,8 +47,8 @@ class MyApp extends App {
           />
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          <link rel="shortcut icon" href="/static/images/triangle.png" />
-          <title>One - React Next.js Ant Design Dashboard</title>
+          {/* <link rel="shortcut icon" href="/static/images/triangle.png" /> brand icon */}
+          <title>Title of the website</title>
           <link
             href="https://fonts.googleapis.com/css?family=Anonymous+Pro:400,700"
             rel="stylesheet"

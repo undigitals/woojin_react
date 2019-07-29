@@ -34,14 +34,6 @@ const getKey = (name, index) => {
   return key.charAt(0).toLowerCase() + key.slice(1);
 };
 
-const UserMenu = (
-  <Menu>
-    <Menu.Item>Settings</Menu.Item>
-    <Menu.Item>Profile</Menu.Item>
-    <Menu.Item>Notifications</Menu.Item>
-  </Menu>
-);
-
 const SidebarContent = ({
   sidebarTheme,
   sidebarMode,
@@ -156,60 +148,7 @@ const SidebarContent = ({
           display: `${sidebarTheme === 'dark' ? 'none' : ''}`
         }}
       />
-      <div className={`py-3 px-4 bg-${sidebarTheme}`}>
-        <Row type="flex" align="middle" justify="space-around">
-          <Dropdown overlay={UserMenu}>
-            <span>
-              <Badge
-                count={6}
-                overflowCount={5}
-                style={{
-                  color: 'rgb(245, 106, 0)',
-                  backgroundColor: 'rgb(253, 227, 207)'
-                }}
-              >
-                <Avatar
-                  shape="circle"
-                  size={40}
-                  src="/static/images/avatar.jpg"
-                />
-              </Badge>
-            </span>
-          </Dropdown>
-          {!collapsed && (
-            <>
-              <span className="mr-auto" />
-              <Link href="https://one-readme.fusepx.com">
-                <a
-                  className={`px-3 ${
-                    sidebarTheme === 'dark' ? 'text-white' : 'text-body'
-                  }`}
-                >
-                  <Tooltip title="Help">
-                    <Book size={20} strokeWidth={1} />
-                  </Tooltip>
-                </a>
-              </Link>
-
-              <Popconfirm
-                placement="top"
-                title="Are you sure you want to sign out?"
-                onConfirm={() => router.push('/signin')}
-                okText="Yes"
-                cancelText="Cancel"
-              >
-                <a
-                  className={`px-3 ${
-                    sidebarTheme === 'dark' ? 'text-white' : 'text-body'
-                  }`}
-                >
-                  <LogOut size={20} strokeWidth={1} />
-                </a>
-              </Popconfirm>
-            </>
-          )}
-        </Row>
-      </div>
+      
     </>
   );
 

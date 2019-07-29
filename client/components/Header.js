@@ -34,69 +34,17 @@ const MainHeader = () => {
         )}
         <Link href="/">
           <a className="brand">
-            <Triangle size={24} strokeWidth={1} />
+             {/* here will be brand icon */}
             <strong className="mx-1 text-black">{state.name}</strong>
           </a>
         </Link>
 
-        <Menu mode="horizontal" className="menu-divider">
-          {!state.mobile && (
-            <Menu.Item>
-              <Link href="/apps/calendar">
-                <a>Calendar</a>
-              </Link>
-            </Menu.Item>
-          )}
-
-          {!state.mobile && (
-            <Menu.Item>
-              <Link href="/apps/messages">
-                <a>Messages</a>
-              </Link>
-            </Menu.Item>
-          )}
-
-          {!state.mobile && (
-            <Menu.Item>
-              <Link href="/apps/social">
-                <a>Social</a>
-              </Link>
-            </Menu.Item>
-          )}
-
-          {!state.mobile && (
-            <Menu.Item>
-              <Link href="/apps/chat">
-                <a>Chat</a>
-              </Link>
-            </Menu.Item>
-          )}
-
-          {state.mobile && (
-            <SubMenu title={<ChevronsDown size={20} strokeWidth={1} />}>
-              <Menu.Item>Calendar</Menu.Item>
-              <Menu.Item>Messages</Menu.Item>
-              <Menu.Item>Social</Menu.Item>
-              <Menu.Item>Chat</Menu.Item>
-            </SubMenu>
-          )}
-        </Menu>
 
         <span className="mr-auto" />
 
         <Menu mode="horizontal">
-          {!state.mobile && (
-            <Menu.Item onClick={() => dispatch({ type: 'fullscreen' })}>
-              {!state.fullscreen ? (
-                <Maximize size={20} strokeWidth={1} />
-              ) : (
-                <Minimize size={20} strokeWidth={1} />
-              )}
-            </Menu.Item>
-          )}
-          <Menu.Item onClick={() => dispatch({ type: 'options' })}>
-            <Settings size={20} strokeWidth={1} />
-          </Menu.Item>
+        
+          
           <SubMenu
             title={
               <Badge count={5}>
@@ -129,18 +77,37 @@ const MainHeader = () => {
               />
             </Menu.Item>
           </SubMenu>
-
-          <SubMenu title={<Avatar src="/static/images/avatar.jpg" />}>
-            <Menu.Item>Settings</Menu.Item>
-            <Menu.Item>Profile</Menu.Item>
-            <Menu.Item>Notifications</Menu.Item>
-            <Menu.Divider />
-            <Menu.Item>
-              <Link href="https://one-readme.fusepx.com">
-                <a>Help?</a>
-              </Link>
+          <SubMenu
+            title={
+              <Badge count={5}>
+                <span className="submenu-title-wrapper">
+                  <Bell size={20} strokeWidth={1} />
+                </span>
+              </Badge>
+            }
+          >
+            <Menu.Item
+              className="p-0 bg-transparent"
+              style={{ height: 'auto' }}
+            >
+              <List
+                className="header-notifications"
+                itemLayout="horizontal"
+                dataSource={notifications}
+                footer={<div>5 Notifications</div>}
+                renderItem={item => (
+                  <Notification>
+                    <List.Item>
+                      <List.Item.Meta
+                        avatar={item.avatar}
+                        title={<a href="javascript:;">{item.title}</a>}
+                        description={<small>{item.description}</small>}
+                      />
+                    </List.Item>
+                  </Notification>
+                )}
+              />
             </Menu.Item>
-            <Menu.Item>Signout</Menu.Item>
           </SubMenu>
         </Menu>
       </Header>
