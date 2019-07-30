@@ -20,8 +20,9 @@ const Signin = ({ form }) => (
     justify="center"
     className="px-3 bg-white mh-page"
     style={{ minHeight: '100vh' }}
+    
   >
-    <Content>
+    <Content  >
       <div className="text-center mb-5">
         <Link href="/signin">
           <a className="brand mr-0">
@@ -30,10 +31,10 @@ const Signin = ({ form }) => (
         </Link>
         <h5 className="mb-0 mt-3">Sign in</h5>
 
-        <p className="text-muted">get started with our service</p>
+        <p className="text-muted">get started with woojin</p>
       </div>
 
-      <Form
+      <Form 
         layout="vertical"
         onSubmit={e => {
           e.preventDefault();

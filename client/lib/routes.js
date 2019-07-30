@@ -20,7 +20,12 @@ import {
 
 export default [
   {
-    path: '/',
+    path: '',
+    name: 'Home',
+    icon: <Home strokeWidth={1} size={16} />
+  },
+  {
+    path: '',
     name: 'Home',
     icon: <Home strokeWidth={1} size={16} />
   },
