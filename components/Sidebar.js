@@ -1,98 +1,237 @@
-import React, { Children } from 'react'
+import {
+
+  Badge,
+
+  Layout,
+  
+  Menu,
+
+  Breadcrumb
+} from 'antd';
+import { Book, LogOut, Triangle } from 'react-feather';
 import 'antd/dist/antd.css';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-import './sass/test.scss'
-import Routes from '../lib/Routes'
-import Inner from './styles/Sidebar'
+import { capitalize, lowercase } from '../lib/helpers';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import Routes from '../lib/routes';
+import { useAppState } from './shared/AppProvider';
+import { withRouter } from 'next/router';
 
+import Header from './Header'
+import Inner from './styles/Sidebar';
 
-
-const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
+const { Content, Footer, Sider } = Layout;
 
-class SiderDemo extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      collapsed: false,
-    };
-}
+let rootSubMenuKeys = [];
+
+const getKey = (name, index) => {
+  const string = `${name}-${index}`;
+  let key = string.replace(' ', '-');
+  return key.charAt(0).toLowerCase() + key.slice(1);
+};
+
+const SidebarContent = ({
+  sidebarTheme,
+  sidebarMode,
+  sidebarIcons,
+  collapsed,
+  router,
+  children
+}) => {
+  const [state, dispatch] = useAppState();
+  const [openKeys, setOpenKeys] = useState([]);
+  const [collapse, onCollapse] = useState(false);
+  const [appRoutes] = useState(Routes);
+  const { pathname } = router;
+
+  const badgeTemplate = badge => <Badge count={badge.value} />;
+
   
 
-  onCollapse = collapsed => {
-    console.log(collapsed);
-    this.setState({ collapsed });
+  useEffect(() => {
+    appRoutes.forEach((route, index) => {
+      const isCurrentPath =
+        pathname.indexOf(lowercase(route.name)) > -1 ? true : false;
+      const key = getKey(route.name, index);
+      rootSubMenuKeys.push(key);
+      if (isCurrentPath) setOpenKeys([...openKeys, key]);
+    });
+  }, []);
+
+  const onOpenChange = openKeys => {
+    const latestOpenKey = openKeys.slice(-1);
+    if (rootSubMenuKeys.indexOf(latestOpenKey) === -1) {
+      setOpenKeys([...latestOpenKey]);
+    } else {
+      setOpenKeys(latestOpenKey ? [...latestOpenKey] : []);
+    }
   };
 
-
-
-
-  render() {
-
-    const menu = (
-      <>
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-            <Menu.Item key="1">
-              <Icon type="pie-chart" />
-              <span>Option 1</span>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Icon type="desktop" />
-              <span>Option 2</span>
-            </Menu.Item>
-            <SubMenu
-              key="sub1"
-              title={
-                <span>
-                  <Icon type="user" />
-                  <span>User</span>
-                </span>
-              }
+  const menu = (
+    <>
+      <Menu
+       theme="dark" defaultSelectedKeys={['1']} mode="inline" openKeys={openKeys} 
+       onOpenChange={onOpenChange}>
+        {appRoutes.map((route, index) => {
+          const hasChildren = route.children ? true : false;
+          if (!hasChildren)
+            return (
+              <Menu.Item
+                key={getKey(route.name, index)}
+                className={
+                  pathname === route.path ? 'ant-menu-item-selected' : ''
+                }
+                onClick={() => {
+                  setOpenKeys([getKey(route.name, index)]);
+                  if (state.mobile) dispatch({ type: 'mobileDrawer' });
+                }}
               >
-              <Menu.Item key="3">Tom</Menu.Item>
-              <Menu.Item key="4">Bill</Menu.Item>
-              <Menu.Item key="5">Alex</Menu.Item>
-            </SubMenu>
-            <SubMenu
-              key="sub2"
-              title={
-                <span>
-                  <Icon type="team" />
-                  <span>Team</span>
-                </span>
-              }
-              >
-              <Menu.Item key="6">Team 1</Menu.Item>
-              <Menu.Item key="8">Team 2</Menu.Item>
-            </SubMenu>
-            <Menu.Item key="9">
-              <Icon type="file" />
-              <span>File</span>
-            </Menu.Item>
-          </Menu>
-      </>
-    )
+                <Link href={route.path} prefetch>
+                  <a>
+                    {sidebarIcons && (
+                      <span className="anticon">{route.icon}</span>
+                    )}
+                    {/* <Icon type="pie-chart" /> */}
+                    <span className="mr-auto">{capitalize(route.name)}</span>
+                    {route.badge && badgeTemplate(route.badge)}
+                  </a>
+                </Link>
+              </Menu.Item>
+            );
 
-    return (
+          if (hasChildren)
+            return (
+              <SubMenu
+                key={getKey(route.name, index)}
+                title={
+                  <span>
+                    {sidebarIcons && (
+                      <span className="anticon">{route.icon}</span>
+                    )}
+                    <span>{capitalize(route.name)}</span>
+                    {route.badge && badgeTemplate(route.badge)}
+                  </span>
+                }
+              >
+                {route.children.map((subitem, index) => {
+                  // console.log("subitem",subitem)
+                 const hasSubChild = subitem.children ? true : false;
+                 if(!hasSubChild)
+                 return ( 
+                  <Menu.Item
+                    key={getKey(subitem.name, index)}
+                    className={
+                      pathname === subitem.path ? 'ant-menu-item-selected' : ''
+                    }
+                    onClick={() => {
+                      if (state.mobile) dispatch({ type: 'mobileDrawer' });
+                    }}
+                  >
+                    <Link href={`${subitem.path ? subitem.path : ''}`} prefetch>
+                      <a>
+                        <span className="mr-auto">
+                          {capitalize(subitem.name)}
+                        </span>
+                        {subitem.badge && badgeTemplate(subitem.badge)}
+                      </a>
+                    </Link>
+                    </Menu.Item>
+                  )
+                  if(hasSubChild)
+                  return (
+                    <SubMenu
+                      key={getKey(subitem.name, index)}
+                      title={
+                        <span>
+                          {sidebarIcons && (
+                            <span className="anticon">{subitem.icon}</span>
+                          )}
+                          <span>{capitalize(subitem.name)}</span>
+                          {subitem.badge && badgeTemplate(subitem.badge)}
+                        </span>
+                      }
+                    >
+                    {subitem.children.map((nestSubItem, index)=>{ 
+                          console.log("nestSubitems", nestSubItem)
+                        return (
+                        <Menu.Item
+                          key={getKey(nestSubItem.name, index)}
+                          className={
+                            pathname === nestSubItem.path ? 'ant-menu-item-selected' : ''
+                          }
+                          onClick={() => {
+                            if (state.mobile) dispatch({ type: 'mobileDrawer' });
+                          }}
+                        >
+                        <Link href={`${nestSubItem.path ? nestSubItem.path : ''}`} prefetch>
+                        <a>
+                          <span className="mr-auto">
+                            {capitalize(nestSubItem.name)}
+                          </span>
+                          {nestSubItem.badge && badgeTemplate(nestSubItem.badge)}
+                        </a>
+                      </Link>
+                      </Menu.Item>
+                    )})}
+
+                    </SubMenu>
+                  )
+                })}
+              </SubMenu>
+            );
+        })}
+      </Menu>
+    </>
+  );
+
+
+
+  const bread = (
+    <>
+    {appRoutes.map((route, index) => {
+      const hasChildren = route.children ? true : false;
+      if(!hasChildren)
+        return (
+          <Breadcrumb style={{ margin: '16px 0' }}>
+              <Breadcrumb.Item>{route.path}</Breadcrumb.Item>
+          </Breadcrumb>
+        )
+    })}
+    </>
+  )
+  return (
+    <>
+      {/* <Inner> */}
       <Layout style={{ minHeight: '100vh' }}>
-        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
-          <div className="logo" >L O G O</div>
-          {menu}
-        </Sider>
-             
-        <Layout>
+        {!state.mobile && (
+          <Sider
+            width={240}
+            collapsible
+            // onClick={()=> dispatch({ type: 'sidebarIcons' })}
+            // onClick={state.collapsed}
+          >
+            <div className="logo" >L O G O</div>
+            {menu}
+          </Sider>
+        )}
+          <Layout>
+          
           <Header style={{ background: '#fff', padding: 0 }} />
-          <Content style={{ margin: '0 16px' }}>
+            <Content style={{ margin: '0 16px' }}>
             <Breadcrumb style={{ margin: '16px 0' }}>
               <Breadcrumb.Item>User</Breadcrumb.Item>
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
-            </Breadcrumb>
-            <div style={{ padding: 24, background: '#fff', minHeight: "90%" }} className="example-sass">{this.props.children}</div>
-          </Content>
+          </Breadcrumb>
+            <div style={{ padding: 24, background: '#fff', minHeight: "90%" }} className="example-sass">{children}</div>
+           </Content>
+          
+         </Layout>
+        
         </Layout>
-      </Layout>
-    );
-  }
-}
+      {/* </Inner> */}
+    </>
+  );
+};
 
-export default SiderDemo;
+export default withRouter(SidebarContent);

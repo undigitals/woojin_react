@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { Layout} from 'antd'
-// import { Container, Inner } from './styles/Page';
-// import Header from "./Header";
 import SideBar from './Sidebar';
 import Meta from "./Meta";
+import { useAppState } from './shared/AppProvider';
 import styled, { ThemeProvider } from "styled-components";
 import { withRouter } from "next/router"
 
@@ -18,39 +17,41 @@ const NonDashboardRoutes = [
     '/_error'
 ];
 
+const Page = ({ router, children }) => {
+  const [loading, setLoading] = useState(true);
+  const [state] = useAppState();
+  const isNotDashboard = NonDashboardRoutes.includes(router.pathname);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, [loading]);
 
-class Page extends Component {
-  constructor(props){
-      super(props)
-  }
-
-  render() {
-
-    const {router, children} = this.props
-    const isNotDashboard = NonDashboardRoutes.includes(router.pathname);
-
-    return (
+  return (
+    // <Spin tip="Loading..." size="large" spinning={loading}>
       <ThemeProvider theme={theme}>
-        <StyledPage>
-          <Meta />
-         
-        
-            {!isNotDashboard && <SideBar>{children}</SideBar>}
+       <StyledPage>
+        <Meta />
+      
           
-
-             {/* <Header style={{ background: '#fff', padding: 0 }} />
-            <Content style={{ margin: '0 16px' }}>
-                    {!isNotDashboard ? <Inner>{this.props.children}</Inner>: children}
-                </Content> 
-           */}
+            {!isNotDashboard && (
+              <SideBar
+                sidebarTheme={state.darkSidebar ? 'dark' : 'light'}
+                sidebarMode={state.sidebarPopup ? 'vertical' : 'inline'}
+                sidebarIcons={state.sidebarIcons}
+                collapsed={state.collapsed}
+              >{children}</SideBar>
             
-         
-        </StyledPage>
+            )}
+             
+            
+          </StyledPage>
       </ThemeProvider>
-    );
-  }
-}
+    // </Spin>
+  );
+};
+
 
 export default withRouter(Page);
 
