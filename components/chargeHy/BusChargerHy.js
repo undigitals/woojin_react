@@ -1,7 +1,7 @@
 import React from "react";
 import DataSet from "@antv/data-set";
 import {Container} from '../styles/Chart'
-import {bardata} from '../../mock/chartdata'
+import {bardata} from '../../mock/lookUp'
 
 let bizcharts;
 if (process.browser) {

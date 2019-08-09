@@ -25,6 +25,12 @@ tr > th{
     width: 20px;
     padding: 4px;
 }
+.ant-table-pagination.ant-pagination {
+    float: unset;
+    text-align: -webkit-center !important;
+    background-color: #f7f7f9;
+    border: 1px solid #ddd;
+  }
 
 `
 const MainContainer = styled.div `

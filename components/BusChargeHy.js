@@ -1,5 +1,5 @@
 import React from "react";
-import RegBusCharts from './chargeHy/RegBus'
+import RegBusCharts from './chargeHy/BusChargerHy'
 import Dtable from './chargeHy/table'
 import Top from './chargeHy/Top'
 

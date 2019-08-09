@@ -1,9 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import DataSet from "@antv/data-set";
 import {Container} from '../styles/LineChart'
-import {linedata} from '../../demos/mock/chartdata'
-import  styled from 'styled-components'
+import {linedata} from '../../mock/chartdata'
 let bizcharts;
 if (process.browser) {
   bizcharts = require("bizcharts");
