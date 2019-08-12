@@ -1,6 +1,6 @@
 import React from "react";
 import { Input } from "antd";
-import { Container } from "../../styles/RegBMS";
+import { Container } from "../../styles/management/RegBMS";
 
 class BatteryPopUp extends React.Component {
   render() {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Input, Select } from "antd";
-import { Container } from "../../styles/RegBus";
+import { Container } from "../../styles/management/RegBus";
 const { Option } = Select;
 
 class PopUp extends React.Component {

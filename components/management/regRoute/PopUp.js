@@ -1,12 +1,12 @@
 import React from "react";
 import { Input } from "antd";
-import { Container } from "../../styles/clientpopup";
+import { ContainerPop } from "../../styles/management/regRoute";
 
 class RegPop extends React.Component {
   render() {
     return (
       <div>
-        <Container>
+        <ContainerPop>
           <div className="name">
             <label className="regInfo" htmlFor="name">
               Customer name
@@ -28,7 +28,7 @@ class RegPop extends React.Component {
               <Input className="inp" placeholder="Route name" />
             </label>
           </div>
-        </Container>
+        </ContainerPop>
       </div>
     );
   }

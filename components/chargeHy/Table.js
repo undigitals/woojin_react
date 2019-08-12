@@ -1,6 +1,6 @@
 import { Collapse, Icon, Table } from "antd";
 import moment from "moment";
-import  {DataTable} from '../styles/Client'
+import  {DataTable} from '../styles/look/general'
 
 
 var full_date = moment().format('DD-MM-YYYY ') + moment().format(' h:m:s')

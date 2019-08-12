@@ -1,6 +1,6 @@
 import React from "react";
 import { Select, Input, Button } from "antd";
-import { Container } from "../../styles/RegBMS";
+import { Container } from "../../styles/management/RegBMS";
 
 const { Option } = Select;
 class Top extends React.Component {

@@ -1,6 +1,6 @@
 import React from "react";
 import DataSet from "@antv/data-set";
-import {Container} from '../styles/Chart'
+import {ContainerChart} from '../styles/look/HyBus'
 import {bardata} from '../../mock/lookUp'
 
 let bizcharts;
@@ -20,7 +20,7 @@ dv.transform({
 class Groupedcolumn extends React.Component {
   render() {
     return (
-      <Container>
+      <ContainerChart>
         {process.browser && 
         <bizcharts.Chart  height={400} data={dv}  forceFit >
           <bizcharts.Axis name="k"  />
@@ -30,7 +30,7 @@ class Groupedcolumn extends React.Component {
           <bizcharts.Geom type="interval" position="k*v" color="name" adjust={[{ type: "dodge", marginRatio: 1/32}]}/>
         </bizcharts.Chart>
         }
-      </Container>
+      </ContainerChart>
     );
   }
 }

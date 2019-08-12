@@ -1,5 +1,5 @@
 import React from "react";
-import { Wrapper } from "./styles/RegBMS";
+import { Wrapper } from "./styles/management/RegBMS";
 import { Table, Button, Modal, Icon } from "antd";
 import { bmsdata } from "../mock/batterey";
 import PopUp from "./management/regBMS/PopUp";

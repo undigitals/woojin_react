@@ -1,6 +1,6 @@
 import React from "react";
 import { Select, Input, Button } from "antd";
-import { Peak } from "../../styles/RegBus";
+import { Peak } from "../../styles/management/RegBus";
 
 const { Option } = Select;
 class Top extends React.Component {

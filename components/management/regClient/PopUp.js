@@ -1,13 +1,12 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { Input } from "antd";
-import { Container } from "../../styles/clientpopup";
+import { ContainerPop } from "../../styles/management/regClient";
 
 class RegPop extends React.Component {
   render() {
     return (
       <div>
-        <Container>
+        <ContainerPop>
           <div className="name">
             <label className="regInfo" htmlFor="name">
               Company name
@@ -49,7 +48,7 @@ class RegPop extends React.Component {
               />
             </label>
           </div>
-        </Container>
+        </ContainerPop>
       </div>
     );
   }

@@ -1,13 +1,12 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { Select, Input, Button } from "antd";
-import { Container } from '../../styles/clientTop';
+import { ContainerTop } from '../../styles/management/regClient';
 
 const { Option } = Select;
 class Top extends React.Component {
   render() {
     return (
-      <Container>
+      <ContainerTop>
         <div>
           <label htmlFor="">
             company
@@ -33,7 +32,7 @@ class Top extends React.Component {
             Check
           </Button>
         </div>
-      </Container>
+      </ContainerTop>
     );
   }
 }

@@ -1,8 +1,8 @@
 import React from "react";
 import { Button, Table, Modal, Icon } from "antd";
-import { Container, DataTable, MainContainer } from "./styles/Client";
-import RouteTop from "./management/regRoute/RouteTop";
-import RoutePopUp from "./management/regRoute/RoutePopUp";
+import { Container, DataTable, MainContainer } from "./styles/management/regRoute";
+import RouteTop from "./management/regRoute/Top";
+import RoutePopUp from "./management/regRoute/PopUp";
 import moment from "moment";
 import { routedata } from "../mock/tabledata";
 // import 'antd/dist/antd.css';

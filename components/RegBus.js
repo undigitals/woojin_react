@@ -1,5 +1,5 @@
 import React from "react";
-import { Wrapper } from "./styles/RegBus";
+import { Wrapper } from "./styles/management/RegBus";
 import { Table, Button, Modal, Icon } from "antd";
 import { busdata } from "../mock/regBus";
 import PopUp from "./management/regBus/PopUp";

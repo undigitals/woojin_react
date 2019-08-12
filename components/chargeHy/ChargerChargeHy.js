@@ -1,6 +1,6 @@
 import React from "react";
-import {Container} from '../styles/LineChart'
-import {linedata} from '../../mock/chartdata'
+import {Container} from '../styles/look/HyCharger'
+import {linedata} from '../../mock/lookUp'
 let bizcharts;
 if (process.browser) {
   bizcharts = require("bizcharts");

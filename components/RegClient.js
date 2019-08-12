@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Table, Modal, Icon } from "antd";
-import { Container, DataTable, MainContainer } from "./styles/Client";
+import { Container, DataTable, MainContainer } from "./styles/management/regClient";
 import ClientTop from "./management/regClient/Top";
 import ClientPop from "./management/regClient/PopUp";
 import moment from "moment";
@@ -20,7 +20,6 @@ for (let i = 0; i < 3; i++) {
     view: "View Details"
   });
 }
-
 
 class Reg extends React.Component {
   constructor(props) {

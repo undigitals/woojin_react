@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "../styles/ChartsMenu";
+import { Container } from "../styles/look/general";
 import { Icon, Row, Col, DatePicker, Button } from "antd";
 
 class Top extends React.Component {
