@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   background: white;
-  margin-top: 100px;
+  margin-top: 30px;
   tr > td {
     padding: 3px;
     text-align: center;
@@ -26,32 +26,30 @@ const Wrapper = styled.div`
     // text-align: center;
   }
 `;
-// for  pop up  menu and ...
+// for  top menu and ...
 const Container = styled.div`
   display: grid;
-  font-weight: 700;
 `;
+
+//for top menu
 const Peak = styled.div`
-  // display: flex;
-  // justify-content: space-between;
-
-  .container1{
-    display: flex;
-    // justify-content: space-around;
-    padding-left: 30px;
-    
-  }
- .container2{
-      display: flex;
-  }
-
+  display: flex;
+  justify-content: space-around;
   border: 1px solid #ddd;
   font-size: 18px;
   font-weight: 700;
-  padding: 15px;
-  padding-bottom: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  
   .col1 {
     display: flex;
+  }
+  .container1{
+    display: flex;
+    
+  }
+ .container2{
+    //   display: flex;
   }
 `;
 

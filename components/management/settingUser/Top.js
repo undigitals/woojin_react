@@ -1,12 +1,12 @@
 import React from "react";
 import { Select, Input, Button } from "antd";
-import { Peak } from "../../styles/RegBus";
+import { ContainerTop } from "../../styles/management/settingUser";
 
 const { Option } = Select;
 class Top extends React.Component {
   render() {
     return (
-      <Peak>
+      <ContainerTop>
         <div>
           <label htmlFor="">
             company
@@ -47,7 +47,7 @@ class Top extends React.Component {
             Check
           </Button>
         </div>
-      </Peak>
+      </ContainerTop>
     );
   }
 }

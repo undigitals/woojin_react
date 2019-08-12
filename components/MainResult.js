@@ -1,12 +1,11 @@
 import React from "react";
-import { Wrapper } from "./styles/management/settingUser";
+import 'antd/dist/antd.css';
+import { Wrapper } from "./styles/management/mainResult";
 import { Table, Button, Modal, Icon } from "antd";
-import { userdata } from "../mock/setting";
-import PopUp from "./management/settingUser/PopUp";
-import Top from "./management/settingUser/Top";
+import { mainRs } from "../mock/maintenance";
+import PopUp from "./management/mainResult/PopUp";
+import Top from "./management/mainResult/Top";
 import moment from "moment";
-
-//full date
 const full_date = moment().format("DD-MM-YYYY ") + moment().format(" h:m:s");
 
 class RegBus extends React.Component {
@@ -14,13 +13,14 @@ class RegBus extends React.Component {
     super(props);
     this.state = {
       visible: false,
-      data: userdata,
+      data: mainRs,
       delete: false,
       type: "detail",
       userKey: null,
       id: 20
     };
   }
+  
   //show the popup function
   showModal = e => {
     console.log('test ',e.target.value);
@@ -56,8 +56,11 @@ class RegBus extends React.Component {
     const { id, data } = this.state;
     const newData = {
       id: id,
-      bmscode: `WS00011`,
-      date: full_date,
+      card_number: 'FFFF',
+      account_name: 'WJ Transport',
+      route_number: '999',
+      car_number: '4567',
+      bms: `WS00011`,
       view: "View Details"
     };
     console.log("ok button clicked");
@@ -87,45 +90,52 @@ class RegBus extends React.Component {
 
   columns = [
     {
-      title: "User ID",
-      key: "id",
-      dataIndex: "id"
+      title: "Maintenance Company",
+      key: "company",
+      dataIndex: "company"
     },
     {
-        title: "Username",
-        key: "user_name",
-        dataIndex: "user_name"
+        title: "Maintenance date",
+        dataIndex: "date"
       },
       {
-        title: "User group ID",
-        key: "group_id",
-        dataIndex: "group_id"
+        title: "Maintenance",
+        dataIndex: "maintenance"
       },
       {
-        title: "User group name",
-        key: "group_name",
-        dataIndex: "group_name"
-      },
-      {
-        title: "Partner Name",
-        key: "partner_name",
-        dataIndex: "partner_name"
+        title: "Maintenance Content",
+        dataIndex: "content"
       },
     {
-      title: "Phone Number",
-      dataIndex: "phone_number"
+      title: "Mechanic",
+      dataIndex: "mechanic"
     },
     {
-      title: "e-mail",
-      dataIndex: "email"
+      title: "Replacement parts",
+      dataIndex: "part"
     },
     {
-      title: "Use or Not",
+        title: "Equipment",
+        dataIndex: "equipment"
+      },
+      {
+        title: "Maintenance Cost",
+        dataIndex: "cost"
+      },
+    {
+      title: "View Details",
       dataIndex: "detail",
       render: (view, record, index) => (
-        <div>
-            Y
-        </div>
+        <span>
+          <Button
+            style={{ backgroundColor: "#f8ac59", color: "white" }}
+            type="default"
+            value={record.id}
+            onClick={this.showModal}
+          >
+            View Details
+          </Button>
+        </span>
       )
     }
   ];
@@ -137,7 +147,7 @@ class RegBus extends React.Component {
         <Wrapper>
           <Modal
             maskClosable={false}
-            title="Registration Field"
+            title="Add/ Modify Electric Bus"
             centered
             onCancel={this.handleCancel}
             visible={this.state.visible}
