@@ -123,7 +123,7 @@ class RegBus extends React.Component {
       title: "Use or Not",
       dataIndex: "detail",
       render: (view, record, index) => (
-        <div>
+        <div onDoubleClick={this.showModal}>
             Y
         </div>
       )

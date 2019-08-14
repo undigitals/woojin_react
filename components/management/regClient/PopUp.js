@@ -1,6 +1,7 @@
 import React from "react";
 import { Input } from "antd";
 import { ContainerPop } from "../../styles/management/regClient";
+import withRegClient from './withRegClient'
 
 class RegPop extends React.Component {
   render() {
@@ -54,4 +55,4 @@ class RegPop extends React.Component {
   }
 }
 
-export default RegPop;
+export default withRegClient(RegPop);
