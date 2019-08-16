@@ -1,7 +1,7 @@
 import React from "react";
 import { Input } from "antd";
 import { ContainerPop } from "../../styles/management/regClient";
-import withRegClient from './withRegClient'
+import withRegClient from "./withRegClient";
 
 class RegPop extends React.Component {
   render() {
@@ -11,20 +11,17 @@ class RegPop extends React.Component {
           <div className="name">
             <label className="regInfo" htmlFor="name">
               Company name
-              <Input className="inp" value={this.props.pname} />
+              <Input className="inp" />
             </label>
           </div>
           <div className="regnum">
             <label className="regInfo" htmlFor="name">
               Business Number
-              <Input
-                placeholder="Business Number "
-                value={this.props.pnumber}
-              />
+              <Input placeholder="Business Number " />
             </label>
           </div>
           <div className="regnum">
-            <label className="regInfo" value={this.props.pmobile}>
+            <label className="regInfo">
               Mobile Number
               <Input className="inp" placeholder="Mobile Number" />
             </label>
@@ -32,21 +29,13 @@ class RegPop extends React.Component {
           <div className="date">
             <label className="regInfo" htmlFor="name">
               Address
-              <Input
-                className="inp"
-                placeholder="Adress"
-                value={this.props.padress}
-              />
+              <Input className="inp" placeholder="Adress" />
             </label>
           </div>
           <div className="info">
             <label className="regInfo" htmlFor="ifno">
               More Info More Info
-              <Input
-                className="inp"
-                placeholder="info"
-                value={this.props.pinfo}
-              />
+              <Input className="inp" placeholder="info" />
             </label>
           </div>
         </ContainerPop>
@@ -55,4 +44,5 @@ class RegPop extends React.Component {
   }
 }
 
-export default withRegClient(RegPop);
+export default RegPop;
+// export default withRegClient(RegPop);

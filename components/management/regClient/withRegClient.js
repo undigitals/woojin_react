@@ -1,6 +1,10 @@
 import React from "react";
+import moment from "moment";
 import { userdata } from "../../../mock/tabledata";
 import { Button, Table, Modal, Icon } from "antd";
+import ClientPop from "../../management/regClient/PopUp";
+const full_date = moment().format("DD-MM-YYYY ") + moment().format(" h:m:s");
+
 
 const Update = Children => {
   class NewComp extends React.Component {
@@ -22,10 +26,10 @@ const Update = Children => {
             // visable: true
         });
         // alert('wroking')
-
+        console.log('test', e.target.value)
       // userKey = e.target.value;
-      console.log("tst ", this.state.data[0].key);
-      console.log("show modal:", e.target.value);
+      // console.log("tst ", this.state.data[0].key);
+      // console.log("show modal:", e.target.value);
       if (e.target.value === "enrol") {
         this.setState({
           delete: true,
@@ -127,8 +131,7 @@ const Update = Children => {
         dataIndex: "view",
         render: (view, record) => (
           <span>
-            {/* <Button type="ghost" onClick={this.showModal(record.name)}> */}
-            <Button type="ghost"  onClick={this.showModal(record.key)}>
+            <Button type="ghost"  onClick={this.showModal} value={record.key}>
               View Details
             </Button>
           </span>
@@ -138,13 +141,49 @@ const Update = Children => {
 
     render() {
       return (
+        <div>
+
+        <Modal
+        maskClosable={false}
+        title="Add/ Modify Electric Bus"
+        centered
+        onCancel={this.handleCancel}
+        visible={this.state.visible}
+        footer={[
+          <div
+          className="pagination"
+          style={{ textAlign: "center" + "!important" }}
+          >
+            <Button type="ghost" onClick={this.handleCancel}>
+              <Icon type="close" />
+              cancel
+            </Button>
+            <Button type="primary" onClick={this.handleOk}>
+              <Icon type="save" />
+              save
+            </Button>
+            <Button
+              type="danger"
+              // value={}
+              disabled={this.props.delete}
+              onClick={this.handleDelete}
+              >
+              <Icon type="delete" />
+              delete
+            </Button>
+          </div>
+        ]}
+        >
+        <ClientPop />
+      </Modal>
         <Children
           visable={this.state.visible}
           data={this.state.data}
           columns={this.columns}
           handleCancel={this.handleCancel}
           showModal={this.showModal}
-        />
+          />
+          </div>
       );
     }
   }

@@ -5,7 +5,6 @@ const Container = styled.div`
     margin-top: 30px;
     font-size: 18px;
     background-color: white;
-
 `;
 
 // search container
@@ -31,7 +30,6 @@ tr > th{
     background-color: #f7f7f9;
     border: 1px solid #ddd;
   }
-
 `
 const MainContainer = styled.div `
 .pagination{
