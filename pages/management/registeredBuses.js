@@ -1,4 +1,4 @@
-import RegBusses from "../../../components/RegBus";
+import RegBusses from "../../components/RegBus";
 
 const RegBus = () => (
   <>

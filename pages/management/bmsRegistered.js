@@ -1,4 +1,4 @@
-import Battery from "../../../components/RegBMS";
+import Battery from "../../components/RegBMS";
 
 const Batery = () => {
   return (

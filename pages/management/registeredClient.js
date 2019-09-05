@@ -1,4 +1,4 @@
-import RegisterClient  from "../../../components/RegClient";
+import RegisterClient  from "../../components/RegClient";
 
 const ClientReg = () => (
   <>

@@ -1,4 +1,4 @@
-import MainChargerAlarm from '../../../components/MainChargerAlarm'
+import MainChargerAlarm from '../../components/MainChargerAlarm'
 
 const BusAlarm =() =>(
     <> 

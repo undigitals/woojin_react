@@ -1,4 +1,4 @@
-import  MainResult from '../../../components/MainResult'
+import  MainResult from '../../components/MainResult'
 
 
 const MaintenanceResult = () =>(

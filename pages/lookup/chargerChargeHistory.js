@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import ChargerHy from "../../../components/HyCharger";
+import ChargerHy from "../../components/HyCharger";
 
 const ChargerChargeHy = () => (
   <>

@@ -1,4 +1,4 @@
-import SettingUsr from '../../../components/SettingUser'
+import SettingUsr from '../../components/SettingUser'
 
 const SettingUser = () =>(
     <> 

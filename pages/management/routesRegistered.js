@@ -1,4 +1,4 @@
-import Routes from "../../../components/RegRoute";
+import Routes from "../../components/RegRoute";
 
 const Route = () => {
   return (

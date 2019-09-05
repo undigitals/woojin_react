@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import BusChargeHy from '../../../components/HyBus';
+import BusChargeHy from '../../components/HyBus';
 
 const BusChargeHistory = () => (
   <>
